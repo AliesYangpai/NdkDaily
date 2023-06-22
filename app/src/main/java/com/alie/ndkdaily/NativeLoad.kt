@@ -17,4 +17,5 @@ object NativeLoad {
     external fun dailyWork09(dst: ByteArray,src: ByteArray) // blur 平均滤波 平均卷积
     external fun dailyWork10(dst: ByteArray,src: ByteArray) // blur 平均滤波 平均卷积
     external fun dailyWork11(dst: ByteArray,src: ByteArray) // blur 平均滤波 平均卷积
+    external fun dailyWork12(dst: ByteArray,src: ByteArray) // blur 平均滤波 平均卷积
 }

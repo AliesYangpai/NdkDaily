@@ -34,7 +34,42 @@ class MainActivity : AppCompatActivity() {
 //        dailyWork08() // blur平均卷积 （也可使用boxFilter）
 //        dailyWork09() // blur平均卷积（也可使用boxFilter）
 //        dailyWork10() // blur平均卷积
-        dailyWork11() // blur平均卷积
+//        dailyWork11() // blur平均卷积
+        dailyWork12() // blur平均卷积
+    }
+
+    private fun dailyWork12() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
+                    when(it) {
+                        true -> {
+                            println("work dailyWork12 surfaceViewEnable")
+                            val srcByteArray = assets.open(britney02).readBytes()
+                            val dstWidth = 720
+                            val dstHeight = 720
+                            val dstChannel = 4
+                            val dstByteArray = ByteArray(dstWidth*dstHeight*dstChannel)
+                            NativeLoad.dailyWork12(dstByteArray,srcByteArray)
+                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {bitmap ->
+                                val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
+                                bitmap.copyPixelsFromBuffer(buffer)
+                            }
+                            if (bitmap == null) {
+                                println("work dailyWork12 bitmap is null")
+                            }
+                            val canvas = binding.mySurfaceView.holder.lockCanvas()
+                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
+                        }
+
+                        else -> {
+                            println("work dailyWork12 surfaceViewUnEnable")
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun dailyWork11() {
