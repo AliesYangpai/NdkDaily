@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/.cxx/Debug/226i1t6d/x86",
+  "command": "/Users/wentianyu/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android26 --gcc-toolchain=/Users/wentianyu/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wentianyu/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dndkdaily_EXPORTS -I/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/src/main/cpp/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -L/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/src/main/cpp/libs/x86 -fno-limit-debug-info  -fPIC -o CMakeFiles/ndkdaily.dir/native-lib.cpp.o -c /Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/src/main/cpp/native-lib.cpp",
+  "file": "/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/src/main/cpp/native-lib.cpp"
+}
+]

@@ -1,0 +1,6 @@
+# ninja log v5
+0	8	0	clean	c348960d39ec2185
+0	238	1679825676	CMakeFiles/myndkdaily.dir/native-lib.cpp.o	403527e658c1f5bf
+239	307	1679825676	/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/build/intermediates/cxx/Debug/226i1t6d/obj/x86_64/libmyndkdaily.so	e3167d65bcda6f5a
+0	44	1687397746	build.ninja	ebeff4279df21a13
+0	10	0	clean	c348960d39ec2185

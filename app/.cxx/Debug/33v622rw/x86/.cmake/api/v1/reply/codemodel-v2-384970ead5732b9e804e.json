@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "myndkdaily",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "myndkdaily::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-myndkdaily-Debug-01187cf840c38f76bed1.json",
+					"name" : "myndkdaily",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/.cxx/Debug/33v622rw/x86",
+		"source" : "/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}
