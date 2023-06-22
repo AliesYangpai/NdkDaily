@@ -1,3 +1,0 @@
-/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/.cxx/Debug/226i1t6d/x86_64/CMakeFiles/rebuild_cache.dir
-/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/.cxx/Debug/226i1t6d/x86_64/CMakeFiles/edit_cache.dir
-/Users/wentianyu/Comprehensive/Develop/Android/WorkSpace/Ndk/MyNdkDaily/app/.cxx/Debug/226i1t6d/x86_64/CMakeFiles/ndkdaily.dir
