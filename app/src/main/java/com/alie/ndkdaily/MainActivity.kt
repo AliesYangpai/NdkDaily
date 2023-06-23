@@ -35,7 +35,43 @@ class MainActivity : AppCompatActivity() {
 //        dailyWork09() // blur平均卷积（也可使用boxFilter）
 //        dailyWork10() // blur平均卷积
 //        dailyWork11() // blur平均卷积
-        dailyWork12() // blur平均卷积
+//        dailyWork12() // blur平均卷积
+        dailyWork13() // 1/25 平均卷积
+    }
+
+    private fun dailyWork13() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                binding.mySurfaceView.surfaceViewStateFlow.collect {
+                    when(it) {
+                        true->{
+                            println("work dailyWork13 surfaceViewEnable")
+                            val srcByeArray = assets.open(britney02).readBytes()
+                            val dstWidth = 720
+                            val dstHeight = 720
+                            val dstChannel = 4
+                            val dstByteArray= ByteArray(dstWidth * dstHeight * dstChannel)
+                            NativeLoad.dailyWork13(dstByteArray,srcByeArray)
+                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also { bitmap->
+                                    val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
+                                    bitmap.copyPixelsFromBuffer(buffer)
+                            }
+                            if (bitmap == null) {
+                                println("work dailyWork13 bitmap is null")
+                                return@collect
+                            }
+                            val canvas = binding.mySurfaceView.holder.lockCanvas()
+                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
+
+                        }
+                        else->{
+                            println("work dailyWork13 surfaceViewUnEnable")
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun dailyWork12() {
