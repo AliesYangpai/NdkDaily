@@ -14,9 +14,9 @@ using namespace cv;
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork01(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jbyteArray src) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jbyteArray src) {
     // 1.根据src byteArray -> matSrc
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
@@ -46,7 +46,7 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork01(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork02(JNIEnv *env, jobject thiz, jbyteArray dst,
-                                                jbyteArray src) {
+                                              jbyteArray src) {
     // 1.将原图src字节数组转化为mat
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
@@ -86,10 +86,10 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork02(JNIEnv *env, jobject thiz, jbyteAr
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork03(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jint rows,
-                                                jint cols) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jint rows,
+                                              jint cols) {
 
     // 1 初始化一张单通道图片并且像素值为20
     Scalar *scalar = new Scalar(20, 20, 20);
@@ -110,11 +110,11 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork03(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork04(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jint dst_row,
-                                                jint dst_col,
-                                                jbyteArray src) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jint dst_row,
+                                              jint dst_col,
+                                              jbyteArray src) {
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
     vector<char> *pv = new vector<char>(srcLength);
@@ -143,7 +143,7 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork04(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork05(JNIEnv *env, jobject thiz, jbyteArray dst,
-                                                jbyteArray src) {
+                                              jbyteArray src) {
 
     //1.将src转化为mat
     //1.1读取src到mat
@@ -170,9 +170,9 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork05(JNIEnv *env, jobject thiz, jbyteAr
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork06(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jbyteArray src) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jbyteArray src) {
     // 1.将src转化成为mat
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
@@ -199,9 +199,9 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork06(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork07(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jbyteArray src) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jbyteArray src) {
 // =======先转化称Rgba 再卷积操作
 //    // 1.将src转化成为mat
 //    jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
@@ -265,7 +265,7 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork07(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork08(JNIEnv *env, jobject thiz, jbyteArray dst,
-                                                jbyteArray src) {
+                                              jbyteArray src) {
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
     vector<char> *pVt = new vector<char>(srcLength);
@@ -291,7 +291,7 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork08(JNIEnv *env, jobject thiz, jbyteAr
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork09(JNIEnv *env, jobject thiz, jbyteArray dst,
-                                                jbyteArray src) {
+                                              jbyteArray src) {
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
     vector<char> *pVt = new vector<char>(srcLength);
@@ -319,7 +319,7 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork09(JNIEnv *env, jobject thiz, jbyteAr
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork10(JNIEnv *env, jobject thiz, jbyteArray dst,
-                                                jbyteArray src) {
+                                              jbyteArray src) {
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
     vector<char> *pVt = new vector<char>(srcLength);
@@ -345,9 +345,9 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork10(JNIEnv *env, jobject thiz, jbyteAr
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork11(JNIEnv *env,
-                                                jobject thiz,
-                                                jbyteArray dst,
-                                                jbyteArray src) {
+                                              jobject thiz,
+                                              jbyteArray dst,
+                                              jbyteArray src) {
     // 1.src-> mat
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
@@ -378,26 +378,26 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork12(JNIEnv *env, jobject thiz, jbyteArray dst,
                                               jbyteArray src) {
-    jbyte* pSrc = env->GetByteArrayElements(src, nullptr);
+    jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
-    vector<char>* pSrcData = new vector<char>(srcLength);
-    memcpy(pSrcData->data(),pSrc,srcLength);
-    env->ReleaseByteArrayElements(src,pSrc,JNI_ABORT);
-    Mat* matSrc = new Mat();
-    imdecode(*pSrcData,IMREAD_COLOR,matSrc);
+    vector<char> *pSrcData = new vector<char>(srcLength);
+    memcpy(pSrcData->data(), pSrc, srcLength);
+    env->ReleaseByteArrayElements(src, pSrc, JNI_ABORT);
+    Mat *matSrc = new Mat();
+    imdecode(*pSrcData, IMREAD_COLOR, matSrc);
     delete pSrcData;
 
-    Mat* matBlur = new Mat();
-    blur(*matSrc,*matBlur,Size(5,5));
+    Mat *matBlur = new Mat();
+    blur(*matSrc, *matBlur, Size(5, 5));
     delete matSrc;
 
-    Mat* matRgba = new Mat();
-    cvtColor(*matBlur,*matRgba,COLOR_BGR2RGBA);
+    Mat *matRgba = new Mat();
+    cvtColor(*matBlur, *matRgba, COLOR_BGR2RGBA);
     delete matBlur;
 
-    jbyte* pDst = env->GetByteArrayElements(dst, nullptr);
-    memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
-    env->ReleaseByteArrayElements(dst,pDst,0);
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst, matRgba->data, matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst, pDst, 0);
     delete matRgba;
 }
 extern "C"
@@ -405,30 +405,30 @@ JNIEXPORT void JNICALL
 Java_com_alie_ndkdaily_NativeLoad_dailyWork13(JNIEnv *env, jobject thiz, jbyteArray dst,
                                               jbyteArray src) {
     //1. src->matSrc
-    jbyte* pSrc= env->GetByteArrayElements(src, nullptr);
+    jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
-    vector<char>* pVt = new vector<char>(srcLength);
-    memcpy(pVt->data(),pSrc,srcLength);
-    env->ReleaseByteArrayElements(src,pSrc,JNI_ABORT);
-    Mat* matSrc = new Mat();
-    imdecode(*pVt,IMREAD_COLOR,matSrc);
+    vector<char> *pVt = new vector<char>(srcLength);
+    memcpy(pVt->data(), pSrc, srcLength);
+    env->ReleaseByteArrayElements(src, pSrc, JNI_ABORT);
+    Mat *matSrc = new Mat();
+    imdecode(*pVt, IMREAD_COLOR, matSrc);
     delete pVt;
 
     //2.matSrc-> matFiltered
-    Mat* matFiltered = new Mat();
-    Mat kernel = Mat::ones(5,5,CV_32F)/25;
-    filter2D(*matSrc,*matFiltered,-1,kernel);
+    Mat *matFiltered = new Mat();
+    Mat kernel = Mat::ones(5, 5, CV_32F) / 25;
+    filter2D(*matSrc, *matFiltered, -1, kernel);
     delete matSrc;
 
     //3.matFiltered -> matRgba
-    Mat* matRgba = new Mat();
-    cvtColor(*matFiltered,*matRgba,COLOR_BGR2RGBA);
+    Mat *matRgba = new Mat();
+    cvtColor(*matFiltered, *matRgba, COLOR_BGR2RGBA);
     delete matFiltered;
 
     //4.写回到dst
-    jbyte* pDst= env->GetByteArrayElements(dst, nullptr);
-    memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
-    env->ReleaseByteArrayElements(dst,pDst,0);
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst, matRgba->data, matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst, pDst, 0);
     delete matRgba;
 }
 extern "C"
@@ -446,19 +446,49 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork14(JNIEnv *env, jobject thiz, jbyteAr
     delete pVt;
 
     //2.matSrc->matFilter
-    Mat* matFilter = new Mat();
-    Mat kernel = Mat::ones(5,5,CV_32F) / 25;
-    filter2D(*matSrc,*matFilter,-1,kernel);
+    Mat *matFilter = new Mat();
+    Mat kernel = Mat::ones(5, 5, CV_32F) / 25;
+    filter2D(*matSrc, *matFilter, -1, kernel);
     delete matSrc;
 
     //3.matFilter->matRgba
-    Mat* matRgba = new Mat();
-    cvtColor(*matFilter,*matRgba,COLOR_BGR2RGBA);
+    Mat *matRgba = new Mat();
+    cvtColor(*matFilter, *matRgba, COLOR_BGR2RGBA);
     delete matFilter;
 
     //4.写回到dst
-   jbyte* pDst = env->GetByteArrayElements(dst, nullptr);
-    memcpy(pDst,matRgba->data,matRgba->total()*matRgba->channels());
-   env->ReleaseByteArrayElements(dst,pDst,0);
-   delete matRgba;
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst, matRgba->data, matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst, pDst, 0);
+    delete matRgba;
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_alie_ndkdaily_NativeLoad_dailyWork15(JNIEnv *env, jobject thiz, jbyteArray dst,
+                                              jbyteArray src) {
+    //1.src->matSrc
+    jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
+    jsize srcLength = env->GetArrayLength(src);
+    vector<char> *pVt = new vector<char>(srcLength);
+    memcpy(pVt->data(), pSrc, srcLength);
+    env->ReleaseByteArrayElements(src, pSrc, JNI_ABORT);
+    Mat *matSrc = new Mat();
+    imdecode(*pVt, IMREAD_COLOR, matSrc);
+    delete pVt;
+
+    //2.matSrc-> matGaussianBlur
+    Mat *matGaussianBlur = new Mat();
+    GaussianBlur(*matSrc, *matGaussianBlur, Size(27, 27), 10);
+    delete matSrc;
+
+    //3.gaussianBlurMat-> matRgba
+    Mat *matRgba = new Mat();
+    cvtColor(*matGaussianBlur, *matRgba, COLOR_BGR2RGBA);
+    delete matGaussianBlur;
+
+    //4.写回到dst
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst, matRgba->data, matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst, pDst, 0);
+    delete matRgba;
 }
