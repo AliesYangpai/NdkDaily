@@ -22,4 +22,5 @@ object NativeLoad {
     external fun dailyWork14(dst: ByteArray,src: ByteArray) // 1/25 filter2D 平均卷积
     external fun dailyWork15(dst: ByteArray,src: ByteArray) // 高斯滤波
     external fun dailyWork16(dst: ByteArray,src: ByteArray) // 高斯滤波
+    external fun dailyWork17(dst: ByteArray,src: ByteArray) // 高斯滤波
 }
