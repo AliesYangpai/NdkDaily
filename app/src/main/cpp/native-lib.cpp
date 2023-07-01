@@ -552,3 +552,34 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork17(JNIEnv *env, jobject thiz, jbyteAr
     memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
     env->ReleaseByteArrayElements(dst,pDst,0);
 }
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_alie_ndkdaily_NativeLoad_dailyWork18(JNIEnv *env, jobject thiz, jbyteArray dst,
+                                              jbyteArray src) {
+    // 1 src to matSrc
+    // 2 matSrc to matGaussian
+    // 3 matGaussian to matRgba
+    // 4 matRgba to dst
+
+    jbyte* pSrc= env->GetByteArrayElements(src, nullptr);
+    jsize srcLength = env->GetArrayLength(src);
+    vector<char>* pVt = new vector<char>(srcLength);
+    memcpy(pVt->data(),pSrc,srcLength);
+    env->ReleaseByteArrayElements(src, pSrc,JNI_ABORT);
+    Mat* matSrc = new Mat();
+    imdecode(*pVt,IMREAD_COLOR,matSrc);
+    delete pVt;
+
+    Mat* matGaussian = new Mat();
+    GaussianBlur(*matSrc,*matGaussian,Size(7,7),10);
+    delete matSrc;
+
+    Mat* matRgba = new Mat();
+    cvtColor(*matGaussian,*matRgba,COLOR_BGR2RGBA);
+    delete matGaussian;
+
+    jbyte* pDst= env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst,pDst,0);
+    delete matRgba;
+}
