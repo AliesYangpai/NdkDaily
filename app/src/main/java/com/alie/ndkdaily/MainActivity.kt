@@ -14,8 +14,9 @@ import java.nio.ByteBuffer
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val pathGirl = "girl1.jpeg"
-    private val pathlibingbing = "libingbing.jpg"
+    private val girl1 = "girl1.jpeg"
+    private val girl2 = "girl2.jpeg"
+    private val libingbing = "libingbing.jpg"
     private val britney01 = "britney01.jpg"
     private val britney02 = "britney02.jpeg"
     private val qiushuzhen01 = "qiushuzhen.jpg"
@@ -42,35 +43,73 @@ class MainActivity : AppCompatActivity() {
 //        dailyWork16() // 高斯滤波 与卷积核size & sigmaX标准差有关
 //        dailyWork17() // 高斯滤波 与卷积核size & sigmaX标准差有关
 //        dailyWork18() // 高斯滤波 与卷积核size & sigmaX标准差有关
-        dailyWork19() // 高斯滤波 与卷积核size & sigmaX标准差有关
+//        dailyWork19() // 高斯滤波 与卷积核size & sigmaX标准差有关
+        dailyWork20() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
     }
 
-    private fun dailyWork19() {
+    private fun dailyWork20() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
-                    when(it) {
-                        true->{
-                            println("work dailyWork19 surfaceViewEnable")
-                            val srcByteArray = assets.open(qiushuzhen01).readBytes()
-                            val dstWidth = 540
-                            val dstHeight = 540
+                    when (it) {
+                        true -> {
+                            println("work dailyWork20 surfaceViewEnable")
+                            val srcByteArray = assets.open(girl2).readBytes()
+                            val dstWidth = 1200
+                            val dstHeight = 800
                             val dstChannel = 4
                             val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
-                            NativeLoad.dailyWork19(dstByteArray,srcByteArray)
+                            NativeLoad.dailyWork20(dstByteArray,7,20.0,20.0, srcByteArray)
                             val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
                                 bitmap ->
                                 val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
                                 bitmap.copyPixelsFromBuffer(buffer)
                             }
                             if (bitmap == null) {
-                                println("work dailyWork19 bitmap is null")
+                                println("work dailyWork03 bitmap is null")
                                 return@collectLatest
                             }
                             val canvas = binding.mySurfaceView.holder.lockCanvas()
                             canvas.drawBitmap(bitmap,0F,0F,null)
                             binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
                         }
+
+                        else -> println("work dailyWork20 surfaceViewUnEnable")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun dailyWork19() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
+                    when (it) {
+                        true -> {
+                            println("work dailyWork19 surfaceViewEnable")
+                            val srcByteArray = assets.open(qiushuzhen01).readBytes()
+                            val dstWidth = 540
+                            val dstHeight = 540
+                            val dstChannel = 4
+                            val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
+                            NativeLoad.dailyWork19(dstByteArray, srcByteArray)
+                            val bitmap =
+                                Bitmap.createBitmap(dstWidth, dstHeight, Bitmap.Config.ARGB_8888)
+                                    .also { bitmap ->
+                                        val buffer = ByteBuffer.wrap(dstByteArray)
+                                            .also { byteBuffer -> byteBuffer.rewind() }
+                                        bitmap.copyPixelsFromBuffer(buffer)
+                                    }
+                            if (bitmap == null) {
+                                println("work dailyWork19 bitmap is null")
+                                return@collectLatest
+                            }
+                            val canvas = binding.mySurfaceView.holder.lockCanvas()
+                            canvas.drawBitmap(bitmap, 0F, 0F, null)
+                            binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
+                        }
+
                         else -> println("work dailyWork19 surfaceViewUnEnable")
                     }
                 }
@@ -82,28 +121,31 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
-                    when(it) {
-                        true-> {
+                    when (it) {
+                        true -> {
                             println("work dailyWork18 surfaceViewUnEnable")
                             val srcByteArray = assets.open(qiushuzhen01).readBytes()
                             val dstWidth = 540
                             val dstHeight = 540
-                            val dstChannel =4
+                            val dstChannel = 4
                             val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
-                            NativeLoad.dailyWork18(dstByteArray,srcByteArray)
-                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
-                                bitmap ->
-                                val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
-                                bitmap.copyPixelsFromBuffer(buffer)
-                            }
+                            NativeLoad.dailyWork18(dstByteArray, srcByteArray)
+                            val bitmap =
+                                Bitmap.createBitmap(dstWidth, dstHeight, Bitmap.Config.ARGB_8888)
+                                    .also { bitmap ->
+                                        val buffer = ByteBuffer.wrap(dstByteArray)
+                                            .also { byteBuffer -> byteBuffer.rewind() }
+                                        bitmap.copyPixelsFromBuffer(buffer)
+                                    }
                             if (bitmap == null) {
                                 println("work dailyWork18 bitmap is null")
                                 return@collectLatest
                             }
                             val canvas = binding.mySurfaceView.holder.lockCanvas()
-                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            canvas.drawBitmap(bitmap, 0F, 0F, null)
                             binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
                         }
+
                         else -> println("work dailyWork18 surfaceViewUnEnable")
                     }
                 }
@@ -122,19 +164,21 @@ class MainActivity : AppCompatActivity() {
                             val dstWidth = 540
                             val dstHeight = 540
                             val dstChannel = 4
-                            val dstByteArray = ByteArray(dstWidth* dstHeight* dstChannel)
-                            NativeLoad.dailyWork17(dstByteArray,srcByteArray)
-                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
-                                bitmap ->
-                                val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
-                                bitmap.copyPixelsFromBuffer(buffer)
-                            }
+                            val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
+                            NativeLoad.dailyWork17(dstByteArray, srcByteArray)
+                            val bitmap =
+                                Bitmap.createBitmap(dstWidth, dstHeight, Bitmap.Config.ARGB_8888)
+                                    .also { bitmap ->
+                                        val buffer = ByteBuffer.wrap(dstByteArray)
+                                            .also { byteBuffer -> byteBuffer.rewind() }
+                                        bitmap.copyPixelsFromBuffer(buffer)
+                                    }
                             if (bitmap == null) {
                                 println("work dailyWork17 bitmap is null")
                                 return@collectLatest
                             }
                             val canvas = binding.mySurfaceView.holder.lockCanvas()
-                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            canvas.drawBitmap(bitmap, 0F, 0F, null)
                             binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
                         }
 
@@ -588,7 +632,7 @@ class MainActivity : AppCompatActivity() {
                     when (it) {
                         true -> {
                             println("work surfaceViewEnable")
-                            val srcByteArray = assets.open(pathGirl).readBytes()
+                            val srcByteArray = assets.open(girl1).readBytes()
                             val dstWidth = 1080 / 2
                             val dstHeight = 1080 / 2
                             val dstChannel = 4 // 这里我使用rgba-8888的4通道来定义
@@ -668,7 +712,7 @@ class MainActivity : AppCompatActivity() {
                     when (it) {
                         true -> {
                             println("work surfaceViewEnable")
-                            val srcByteArray = assets.open(pathlibingbing).readBytes()
+                            val srcByteArray = assets.open(libingbing).readBytes()
                             val dstWidth = 540
                             val dstHeight = 540
                             val dstChannel = 4
@@ -709,7 +753,7 @@ class MainActivity : AppCompatActivity() {
                     when (it) {
                         true -> {
                             println("work surfaceViewEnable")
-                            val srcByteArray = assets.open(pathGirl).readBytes()
+                            val srcByteArray = assets.open(girl1).readBytes()
                             val dstWidth = 1080
                             val dstHeight = 1080
                             val dstChannel = 4
