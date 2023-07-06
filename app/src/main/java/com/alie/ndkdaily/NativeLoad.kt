@@ -28,4 +28,5 @@ object NativeLoad {
     external fun dailyWork18(dst: ByteArray,src: ByteArray) // 高斯滤波
     external fun dailyWork19(dst: ByteArray,src: ByteArray) // 高斯滤波
     external fun dailyWork20(dst: ByteArray,d:Int,sigmaColor:Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
+    external fun dailyWork21(dst: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
 }
