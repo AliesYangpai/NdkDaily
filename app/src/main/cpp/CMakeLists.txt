@@ -8,7 +8,10 @@ project("ndkdaily")
 add_library(
         ndkdaily
         SHARED
-        native-lib.cpp)
+        native-lib.cpp
+        ${CMAKE_SOURCE_DIR}/local/trans_opencv_util.h
+        ${CMAKE_SOURCE_DIR}/local/trans_opencv_util.cpp
+        )
 #opencv
 include_directories(include)
 # 添加预编译库 （android 6.0 之后）

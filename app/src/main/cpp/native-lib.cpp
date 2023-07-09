@@ -2,6 +2,7 @@
 #include <string>
 #include "opencv2/opencv.hpp"
 #include <android/log.h>
+#include "local/trans_opencv_util.h"
 
 #define TAG "ndkWork"
 // __VA_ARGS__ 内置的宏，可进行替换
@@ -689,24 +690,23 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork22(JNIEnv *env, jobject thiz, jbyteAr
     // 3.matBilateral to matRgba
     // 4.matRgba to dst
 
-   jbyte* pSrc = env->GetByteArrayElements(src, nullptr);
-   jsize srcLength = env->GetArrayLength(src);
-   vector<char>* pVt = new vector<char>(srcLength);
-   memcpy(pVt->data(),pSrc,srcLength);
-   env->ReleaseByteArrayElements(src,pSrc,JNI_ABORT);
-   Mat* matSrc = new Mat();
-   imdecode(*pVt,IMREAD_COLOR,matSrc);
+    jbyte* pSrc = env->GetByteArrayElements(src, nullptr);
+    jsize srcLength = env->GetArrayLength(src);
+    Mat* matSrc = new Mat();
+    trans_byte_array_to_mat_src(pSrc, srcLength, matSrc);
+    env->ReleaseByteArrayElements(src,pSrc,JNI_ABORT);
 
-   Mat* matBilateral = new Mat();
-   bilateralFilter(*matSrc,*matBilateral,d,sigma_color,sigma_color);
-   delete matSrc;
 
-   Mat* matRgba = new Mat();
-   cvtColor(*matBilateral,*matRgba,COLOR_BGR2RGBA);
-   delete matBilateral;
+    Mat* matBilateral = new Mat();
+    bilateralFilter(*matSrc,*matBilateral,d,sigma_color,sigma_space);
+    delete matSrc;
 
-   jbyte* pDst= env->GetByteArrayElements(dst, nullptr);
+    Mat* matRgba = new Mat();
+    cvtColor(*matBilateral,*matRgba,COLOR_BGR2RGBA);
+    delete matBilateral;
+
+    jbyte* pDst= env->GetByteArrayElements(dst, nullptr);
     memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
-   env->ReleaseByteArrayElements(dst,pDst,0);
-   delete matRgba;
+    env->ReleaseByteArrayElements(dst,pDst,0);
+    delete matRgba;
 }
