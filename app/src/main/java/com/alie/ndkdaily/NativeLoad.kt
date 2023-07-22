@@ -32,4 +32,5 @@ object NativeLoad {
     external fun dailyWork22(dst: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
     external fun dailyWork23(dst: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
     external fun dailyWork24(dst: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
+    external fun dailyWork25(dst: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double,src: ByteArray) // 双边滤波
 }
