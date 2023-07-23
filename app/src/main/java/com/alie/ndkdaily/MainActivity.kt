@@ -50,7 +50,41 @@ class MainActivity : AppCompatActivity() {
 //        dailyWork22() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
 //        dailyWork23() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
 //        dailyWork24() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
-        dailyWork25() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
+//        dailyWork25() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
+        dailyWork26() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
+    }
+
+    private fun dailyWork26() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
+                    when(it) {
+                        true-> {
+                            println("work dailyWork26 surfaceViewEnable")
+                            val srcByteArray  = assets.open(girl2).readBytes()
+                            val dstWidth = 1200
+                            val dstHeight = 800
+                            val dstChannel = 4
+                            val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
+                            NativeLoad.dailyWork26(dstByteArray,11,20.00,20.00,srcByteArray)
+                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
+                                bitmap ->
+                                val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
+                                bitmap.copyPixelsFromBuffer(buffer)
+                            }
+                            if (bitmap == null) {
+                                println("work dailyWork26 bitmap is null")
+                                return@collectLatest
+                            }
+                            val canvas = binding.mySurfaceView.holder.lockCanvas()
+                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
+                        }
+                        else-> println("work dailyWork26 surfaceViewUnEnable")
+                    }
+                }
+            }
+        }
     }
 
     private fun dailyWork25() {

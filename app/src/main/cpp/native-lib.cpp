@@ -786,25 +786,57 @@ Java_com_alie_ndkdaily_NativeLoad_dailyWork25(JNIEnv *env, jobject thiz, jbyteAr
     // 4.matRgba to mat
     jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
     jsize srcLength = env->GetArrayLength(src);
-    vector<char>* pVt = new vector<char>(srcLength);
-    memcpy(pVt->data(),pSrc,srcLength);
-    env->ReleaseByteArrayElements(src,pSrc,JNI_ABORT);
+    vector<char> *pVt = new vector<char>(srcLength);
+    memcpy(pVt->data(), pSrc, srcLength);
+    env->ReleaseByteArrayElements(src, pSrc, JNI_ABORT);
 
-    Mat* matSrc = new Mat();
-    imdecode(*pVt,IMREAD_COLOR,matSrc);
+    Mat *matSrc = new Mat();
+    imdecode(*pVt, IMREAD_COLOR, matSrc);
     delete pVt;
 
-    Mat* matBilateral = new Mat();
-    bilateralFilter(*matSrc,*matBilateral,d,sigma_color,sigma_space);
+    Mat *matBilateral = new Mat();
+    bilateralFilter(*matSrc, *matBilateral, d, sigma_color, sigma_space);
     delete matSrc;
 
-    Mat* matRgba = new Mat();
-    cvtColor(*matBilateral,*matRgba,COLOR_BGR2RGBA);
+    Mat *matRgba = new Mat();
+    cvtColor(*matBilateral, *matRgba, COLOR_BGR2RGBA);
     delete matBilateral;
 
-    jbyte* pDst = env->GetByteArrayElements(dst, nullptr);
-    memcpy(pDst,matRgba->data,matRgba->total() * matRgba->channels());
-    env->ReleaseByteArrayElements(dst,pDst,0);
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst, matRgba->data, matRgba->total() * matRgba->channels());
+    env->ReleaseByteArrayElements(dst, pDst, 0);
     delete matRgba;
 
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_alie_ndkdaily_NativeLoad_dailyWork26(JNIEnv *env, jobject thiz, jbyteArray dst, jint d,
+                                              jdouble sigma_color, jdouble sigma_space,
+                                              jbyteArray src) {
+    // 1.src to matSrc
+    // 2.matSrc to  matBilateral
+    // 3.matBilateral to matRgba
+    // 4.matRgba to dst
+
+    jbyte *pSrc = env->GetByteArrayElements(src, nullptr);
+    jsize srcLength = env->GetArrayLength(src);
+    vector<char> *pVt = new vector<char>(srcLength);
+    memcpy(pVt->data(), pSrc, pVt->size());
+    env->ReleaseByteArrayElements(src, pSrc, JNI_ABORT);
+    Mat *matSrc = new Mat();
+    imdecode(*pVt, IMREAD_COLOR, matSrc);
+    delete pVt;
+
+    Mat *matBilateral = new Mat();
+    bilateralFilter(*matSrc, *matBilateral, d, sigma_color, sigma_space);
+    delete matSrc;
+
+    Mat *matRgba = new Mat();
+    cvtColor(*matBilateral, *matRgba, COLOR_BGR2RGBA);
+    delete matBilateral;
+
+    jbyte *pDst = env->GetByteArrayElements(dst, nullptr);
+    memcpy(pDst,matRgba->data,matRgba->total()* matRgba->channels());
+    env->ReleaseByteArrayElements(dst,pDst,0);
+    delete matRgba;
 }
