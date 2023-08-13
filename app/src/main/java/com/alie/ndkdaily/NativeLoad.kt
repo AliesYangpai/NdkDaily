@@ -36,4 +36,5 @@ object NativeLoad {
     external fun dailyWork28(dst: ByteArray,src: ByteArray,threshold1:Double,threshold2:Double) // Canny算子 边缘检测 噪西抑阈
     external fun dailyWork29(dst: ByteArray,src: ByteArray,threshold1: Double,threshold2: Double) // Canny算子 边缘检测 噪西抑阈
     external fun dailyWork30(dst: ByteArray,src: ByteArray,d:Int,sigmaColor: Double,sigmaSpace: Double) // 双边滤波
+    external fun dailyWork31(dst: ByteArray,src: ByteArray,threshold1: Double,threshold2: Double) // Canny算子 边缘检测 噪西抑阈
 }
