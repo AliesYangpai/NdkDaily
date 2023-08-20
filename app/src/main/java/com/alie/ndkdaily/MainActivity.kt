@@ -55,36 +55,73 @@ class MainActivity : AppCompatActivity() {
 //        dailyWork28() // Canny算子 边缘检测 噪西抑阈
 //        dailyWork29() // Canny算子 边缘检测 噪西抑阈
 //        dailyWork30() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
-        dailyWork31() // Canny算子 边缘检测 噪西抑阈
+//        dailyWork31() // Canny算子 边缘检测 噪西抑阈
+        dailyWork32() // 双边滤波 美颜 半径-d sigmaColor sigmaSpace
     }
 
-    private fun dailyWork31() {
+    private fun dailyWork32() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
-                    when(it) {
-                        true->{
-                            println("work dailyWork31 surfaceViewUnEnable")
-                            val srcByteArray = assets.open(girl1).readBytes()
-                            val dstWidth = 1080
-                            val dstHeight = 1080
+                    when (it) {
+                        true -> {
+                            println("work dailyWork32 surfaceViewEnable")
+                            val srcByteArray = assets.open(girl2).readBytes()
+                            val dstWidth = 1200
+                            val dstHeight = 800
                             val dstChannel = 4
                             val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
-                            NativeLoad.dailyWork31(dstByteArray,srcByteArray,100.00,200.00)
+                            NativeLoad.dailyWork32(dstByteArray,srcByteArray,15,20.00,20.00)
                             val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
                                 bitmap ->
                                 val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
                                 bitmap.copyPixelsFromBuffer(buffer)
                             }
                             if (bitmap == null) {
-                                println("work dailyWork31 bitmap is null")
+                                println("work dailyWork32 bitmap is null")
                                 return@collectLatest
                             }
                             val canvas = binding.mySurfaceView.holder.lockCanvas()
                             canvas.drawBitmap(bitmap,0F,0F,null)
                             binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
                         }
-                        else-> println("work dailyWork31 surfaceViewUnEnable")
+                        else -> println("work dailyWork32 surfaceViewUnEnable")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun dailyWork31() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                binding.mySurfaceView.surfaceViewStateFlow.collectLatest {
+                    when (it) {
+                        true -> {
+                            println("work dailyWork31 surfaceViewUnEnable")
+                            val srcByteArray = assets.open(girl1).readBytes()
+                            val dstWidth = 1080
+                            val dstHeight = 1080
+                            val dstChannel = 4
+                            val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
+                            NativeLoad.dailyWork31(dstByteArray, srcByteArray, 100.00, 200.00)
+                            val bitmap =
+                                Bitmap.createBitmap(dstWidth, dstHeight, Bitmap.Config.ARGB_8888)
+                                    .also { bitmap ->
+                                        val buffer = ByteBuffer.wrap(dstByteArray)
+                                            .also { byteBuffer -> byteBuffer.rewind() }
+                                        bitmap.copyPixelsFromBuffer(buffer)
+                                    }
+                            if (bitmap == null) {
+                                println("work dailyWork31 bitmap is null")
+                                return@collectLatest
+                            }
+                            val canvas = binding.mySurfaceView.holder.lockCanvas()
+                            canvas.drawBitmap(bitmap, 0F, 0F, null)
+                            binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
+                        }
+
+                        else -> println("work dailyWork31 surfaceViewUnEnable")
                     }
                 }
             }
@@ -103,18 +140,20 @@ class MainActivity : AppCompatActivity() {
                             val dstHeight = 800
                             val dstChannel = 4
                             val dstByteArray = ByteArray(dstWidth * dstHeight * dstChannel)
-                            NativeLoad.dailyWork30(dstByteArray,srcByteArray,15,20.00,20.00)
-                            val bitmap = Bitmap.createBitmap(dstWidth,dstHeight,Bitmap.Config.ARGB_8888).also {
-                                bitmap ->
-                                val buffer = ByteBuffer.wrap(dstByteArray).also { byteBuffer -> byteBuffer.rewind() }
-                                bitmap.copyPixelsFromBuffer(buffer)
-                            }
+                            NativeLoad.dailyWork30(dstByteArray, srcByteArray, 15, 20.00, 20.00)
+                            val bitmap =
+                                Bitmap.createBitmap(dstWidth, dstHeight, Bitmap.Config.ARGB_8888)
+                                    .also { bitmap ->
+                                        val buffer = ByteBuffer.wrap(dstByteArray)
+                                            .also { byteBuffer -> byteBuffer.rewind() }
+                                        bitmap.copyPixelsFromBuffer(buffer)
+                                    }
                             if (bitmap == null) {
                                 println("work dailyWork30 bitmap is null")
                                 return@collectLatest
                             }
                             val canvas = binding.mySurfaceView.holder.lockCanvas()
-                            canvas.drawBitmap(bitmap,0F,0F,null)
+                            canvas.drawBitmap(bitmap, 0F, 0F, null)
                             binding.mySurfaceView.holder.unlockCanvasAndPost(canvas)
                         }
 
